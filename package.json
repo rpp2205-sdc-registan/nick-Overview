@@ -1,0 +1,28 @@
+{
+  "name": "nick-overview",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rpp2205-sdc-registan/nick-Overview.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rpp2205-sdc-registan/nick-Overview/issues"
+  },
+  "homepage": "https://github.com/rpp2205-sdc-registan/nick-Overview#readme",
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.1.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "mysql2": "^2.3.3"
+  }
+}
