@@ -17,7 +17,7 @@ CREATE TABLE `products` (
   `name` VARCHAR(50) NULL DEFAULT NULL,
   `slogan` VARCHAR(1000) NULL DEFAULT NULL,
   `description` VARCHAR(2000) NULL DEFAULT NULL,
-  `default_price` VARCHAR(50) NULL DEFAULT NULL,
+  `category` VARCHAR(50) NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -110,7 +110,7 @@ ALTER TABLE `skus` ADD FOREIGN KEY (skus_ref_Id) REFERENCES `styles` (`id`);
 -- Test Data
 -- ---
 
--- INSERT INTO `products` (`id`,`name`,`slogan`,`description`,`default_price`) VALUES
+-- INSERT INTO `products` (`id`,`name`,`slogan`,`description`,`category`) VALUES
 -- ('','','','','');
 -- INSERT INTO `features` (`id`,`feats_ref_Id`,`feature`,`value`) VALUES
 -- ('','','','');

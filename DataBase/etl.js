@@ -15,17 +15,21 @@ const getProducts = function() {
     return results.data;
   })
   .then((resultArray) => {
+    var promiseArray = []
     for (var i = 0; i < resultArray.length; i++) {
-      db.queryAsync(
-        `INSERT INTO products (id, name, slogan, description, default_price) VALUES (${Number(resultArray[i].id)},
+      promiseArray.push(db.queryAsync(
+        `INSERT INTO products (id, name, slogan, description, category) VALUES (${Number(resultArray[i].id)},
         "${resultArray[i].name}", "${resultArray[i].slogan}", "${resultArray[i].description}",
         "${resultArray[i].default_price}")`
-      )
+      ))
     }
-    return success;
+    return promiseArray;
+  })
+  .then((promiseArray) => {
+    return Promise.all(promiseArray)
   })
   .then((result) => {
-    console.log(result);
+    console.log(success);
   })
   .catch((err) => {
     console.log(err);
@@ -39,42 +43,157 @@ const getFeatures = function() {
     return results.data;
   })
   .then((resultArray) => {
-    for (var i = 0; i < resultArray.length; i++) {
-      db.queryAsync(
-        `INSERT INTO features (id, feats_ref_Id, feature, value) VALUES (${Number(resultArray[i].id)}, ${Number(resultArray[i].product_id)}, "${resultArray[i].feature}", "${resultArray[i].value}")`
-      )
+    var promiseArrays = [];
+    var promiseArrayOne = [];
+    var promiseArrayTwo = [];
+    for (var i = 0; i < 1000000; i++) {
+      promiseArrayOne.push(db.queryAsync(
+        `INSERT INTO features (id, feats_ref_Id, feature, value)
+        VALUES (${Number(resultArray[i].id)}, ${Number(resultArray[i].product_id)},
+        "${resultArray[i].feature}", "${resultArray[i].value}")`
+      ))
     }
-    return success;
+
+    for (var i = 1000001; i < resultArray.length; i++) {
+      promiseArrayTwo.push(db.queryAsync(
+        `INSERT INTO features (id, feats_ref_Id, feature, value)
+        VALUES (${Number(resultArray[i].id)}, ${Number(resultArray[i].product_id)},
+        "${resultArray[i].feature}", "${resultArray[i].value}")`
+      ))
+    }
+    promiseArrays.push(promiseArrayOne);
+    promiseArrays.push(promiseArrayTwo);
+    return promiseArrays;
+  })
+  .then((promiseArray) => {
+    return Promise.all([Promise.all(promiseArray[0]), Promise.all(promiseArray[1])]);
   })
   .then((result) => {
-    console.log(result);
+    console.log(success);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+
+}
+
+const getPhotosOne = function() {
+  const success = 'Photos Succesfully Added!';
+  axios.get('http://localhost:3000/photosOne')
+  .then((results) => {
+    return results.data;
+  })
+  .then((resultArray) => {
+    console.log("RETURNED DATA")
+    var promiseArrays = [];
+    for (var i = 0; i < resultArray.length; i++) {
+      promiseArrays.push(db.queryAsync(
+        `INSERT INTO photos (id, photos_ref_Id, thumbnail_url, url)
+        VALUES (${Number(resultArray[i].id)}, ${Number(resultArray[i].styleId)}, '${resultArray[i].thumbnail_url}', '${resultArray[i].url}')`
+      ))
+    }
+    return promiseArrays;
+  })
+  .then((promiseArray) => {
+    console.log("STARTING PROMISES OF DATA")
+    return Promise.all(promiseArray)
+  })
+  .then((result) => {
+    console.log(success);
   })
   .catch((err) => {
     console.log(err);
   })
 }
 
-const getPhotos = function() {
+const getPhotosTwo = function() {
   const success = 'Photos Succesfully Added!';
-  axios.get('http://localhost:3000/photos')
+  axios.get('http://localhost:3000/photosTwo')
   .then((results) => {
     return results.data;
   })
   .then((resultArray) => {
+    console.log("RETURNED DATA")
+    var promiseArrays = [];
     for (var i = 0; i < resultArray.length; i++) {
-      db.queryAsync(
-        `INSERT INTO photos (id, photos_ref_Id, thumbnail_url, url) VALUES (${Number(resultArray[i].id)},${Number(resultArray[i].styleId)}, "${resultArray[i].thumbnail_url}", "${resultArray[i].url}")`
-      )
+      promiseArrays.push(db.queryAsync(
+        `INSERT INTO photos (id, photos_ref_Id, thumbnail_url, url)
+        VALUES (${Number(resultArray[i].id)}, ${Number(resultArray[i].styleId)}, '${resultArray[i].thumbnail_url}', '${resultArray[i].url}')`
+      ))
     }
-    return success;
+    return promiseArrays;
+  })
+  .then((promiseArray) => {
+    console.log("STARTING PROMISES OF DATA")
+    return Promise.all(promiseArray)
   })
   .then((result) => {
-    console.log(result);
+    console.log(success);
   })
   .catch((err) => {
     console.log(err);
   })
 }
+
+const getPhotosThree = function() {
+  const success = 'Photos Succesfully Added!';
+  axios.get('http://localhost:3000/photosThree')
+  .then((results) => {
+    return results.data;
+  })
+  .then((resultArray) => {
+    console.log("RETURNED DATA")
+    var promiseArrays = [];
+    for (var i = 0; i < resultArray.length; i++) {
+      promiseArrays.push(db.queryAsync(
+        `INSERT INTO photos (id, photos_ref_Id, thumbnail_url, url)
+        VALUES (${Number(resultArray[i].id)}, ${Number(resultArray[i].styleId)}, '${resultArray[i].thumbnail_url}', '${resultArray[i].url}')`
+      ))
+    }
+    return promiseArrays;
+  })
+  .then((promiseArray) => {
+    console.log("STARTING PROMISES OF DATA")
+    return Promise.all(promiseArray)
+  })
+  .then((result) => {
+    console.log(success);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+}
+
+const getPhotosFour = function() {
+  const success = 'Photos Succesfully Added!';
+  axios.get('http://localhost:3000/photosFour')
+  .then((results) => {
+    return results.data;
+  })
+  .then((resultArray) => {
+    console.log("RETURNED DATA")
+    var promiseArrays = [];
+    for (var i = 0; i < resultArray.length; i++) {
+      promiseArrays.push(db.queryAsync(
+        `INSERT INTO photos (id, photos_ref_Id, thumbnail_url, url)
+        VALUES (${Number(resultArray[i].id)}, ${Number(resultArray[i].styleId)}, '${resultArray[i].thumbnail_url}', '${resultArray[i].url}')`
+      ))
+    }
+    return promiseArrays;
+  })
+  .then((promiseArray) => {
+    console.log("STARTING PROMISES OF DATA")
+    return Promise.all(promiseArray)
+  })
+  .then((result) => {
+    console.log(success);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+}
+
+
 
 const getSkus = function() {
   const success = 'Skus Succesfully Added!';
@@ -83,19 +202,26 @@ const getSkus = function() {
     return results.data;
   })
   .then((resultArray) => {
+    var promiseArray = []
     for (var i = 0; i < resultArray.length; i++) {
-      db.queryAsync(
-        `INSERT INTO skus (id, skus_ref_Id, quantity, size) VALUES (${Number(resultArray[i].id)}, ${Number(resultArray[i].styleId)}, "${resultArray[i].quantity}", "${resultArray[i].size}")`
-      )
+      promiseArray.push(db.queryAsync(
+        `INSERT INTO skus (id, skus_ref_Id, quantity, size) VALUES
+        (${Number(resultArray[i].id)}, ${Number(resultArray[i].styleId)},
+        "${resultArray[i].quantity}", "${resultArray[i].size}")`
+      ))
     }
-    return success;
+    return promiseArray;
+  })
+  .then((promiseArray) => {
+    return Promise.all(promiseArray)
   })
   .then((result) => {
-    console.log(result);
+    console.log(success);
   })
   .catch((err) => {
     console.log(err);
   })
+
 }
 
 const getStyles = function() {
@@ -105,26 +231,52 @@ const getStyles = function() {
     return results.data;
   })
   .then((resultArray) => {
+    var promiseArray = []
     for (var i = 0; i < resultArray.length; i++) {
-      db.queryAsync(
-        `INSERT INTO styles (id, style_ref_Id, name, sale_price, original_price, isDefault) VALUES (${Number(resultArray[i].id)}, ${Number(resultArray[i].productId)}, "${resultArray[i].name}", "${resultArray[i].sale_price}","${resultArray[i].original_price}", "${resultArray[i].default_style}")`
-      )
+      promiseArray.push(db.queryAsync(
+        `INSERT INTO styles (id, style_ref_Id, name, sale_price, original_price, isDefault)
+        VALUES (${Number(resultArray[i].id)}, ${Number(resultArray[i].productId)}, "${resultArray[i].name}",
+        "${resultArray[i].sale_price}","${resultArray[i].original_price}", "${resultArray[i].default_style}")`
+      ))
     }
-    return success;
+    return promiseArray;
+  })
+  .then((promiseArray) => {
+    return Promise.all(promiseArray)
   })
   .then((result) => {
-    console.log(result);
+    console.log(success);
   })
   .catch((err) => {
     console.log(err);
   })
+
 }
 
 module.exports = {
   testMethod: testMethod,
   getProducts: getProducts,
   getFeatures: getFeatures,
-  getPhotos: getPhotos,
+  getPhotosOne: getPhotosOne,
+  getPhotosTwo: getPhotosTwo,
+  getPhotosThree: getPhotosThree,
+  getPhotosFour: getPhotosFour,
   getSkus: getSkus,
   getStyles: getStyles
 }
+
+// db.queryAsync(
+//   `INSERT INTO features (id, feats_ref_Id, feature, value) VALUES (${Number(resultArray[i].id)}, ${Number(resultArray[i].product_id)}, "${resultArray[i].feature}", "${resultArray[i].value}")`
+// )
+
+// db.queryAsync(
+//   `INSERT INTO photos (id, photos_ref_Id, thumbnail_url, url) VALUES (${Number(resultArray[i].id)},${Number(resultArray[i].styleId)}, "${resultArray[i].thumbnail_url}", "${resultArray[i].url}")`
+// )
+
+// db.queryAsync(
+//   `INSERT INTO skus (id, skus_ref_Id, quantity, size) VALUES (${Number(resultArray[i].id)}, ${Number(resultArray[i].styleId)}, "${resultArray[i].quantity}", "${resultArray[i].size}")`
+// )
+
+// db.queryAsync(
+//   `INSERT INTO styles (id, style_ref_Id, name, sale_price, original_price, isDefault) VALUES (${Number(resultArray[i].id)}, ${Number(resultArray[i].productId)}, "${resultArray[i].name}", "${resultArray[i].sale_price}","${resultArray[i].original_price}", "${resultArray[i].default_style}")`
+// )
