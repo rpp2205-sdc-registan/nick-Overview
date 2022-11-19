@@ -1,4 +1,4 @@
-//require("dotenv").config();
+require("dotenv").config();
 const mysql = require("mysql2");
 const Promise = require("bluebird");
 
@@ -14,17 +14,6 @@ const db = Promise.promisifyAll(connection, { multiArgs: true });
 
 db.connectAsync()
   .then(() => console.log(`Connected to MySQL as id: ${db.threadId}`))
-  .then(() => {
-    return db.queryAsync(
-      // TODO: ZfIX THIS TO WORK
-      `LOAD DATA LOCAL INFILE "Data_Set/product.csv"
-      INTO TABLE products
-      FIELDS TERMINATED BY ","
-      ENCLOSED BY """
-      LINES TERMINATED BY '\n'
-      IGNORE 1 ROWS`
-    );
-  })
   .catch((err) => console.log(err));
 
 module.exports = db;
