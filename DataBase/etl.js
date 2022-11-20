@@ -221,7 +221,216 @@ const getSkus = function() {
   .catch((err) => {
     console.log(err);
   })
+}
 
+const getSkusTwo = function() {
+  const success = 'Skus Succesfully Added!';
+  axios.get('http://localhost:3000/skusTwo')
+  .then((results) => {
+    console.log("Received Data")
+    return results.data;
+  })
+  .then((resultArray) => {
+    var promiseArray = []
+    for (var i = 0; i < resultArray.length; i++) {
+      promiseArray.push(db.queryAsync(
+        `INSERT INTO skus (id, skus_ref_Id, quantity, size) VALUES
+        (${Number(resultArray[i].id)}, ${Number(resultArray[i].styleId)},
+        '${resultArray[i].quantity}', '${resultArray[i].size}')`
+      ))
+    }
+    return promiseArray;
+  })
+  .then((promiseArray) => {
+    console.log("Returning Promise Array")
+    return Promise.all(promiseArray)
+  })
+  .then((result) => {
+    console.log(success);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+}
+
+const getSkusThree = function() {
+  const success = 'Skus Succesfully Added!';
+  axios.get('http://localhost:3000/skusThree')
+  .then((results) => {
+    console.log("Received Data")
+    return results.data;
+  })
+  .then((resultArray) => {
+    var promiseArray = []
+    for (var i = 0; i < resultArray.length; i++) {
+      promiseArray.push(db.queryAsync(
+        `INSERT INTO skus (id, skus_ref_Id, quantity, size) VALUES
+        (${Number(resultArray[i].id)}, ${Number(resultArray[i].styleId)},
+        '${resultArray[i].quantity}', '${resultArray[i].size}')`
+      ))
+    }
+    return promiseArray;
+  })
+  .then((promiseArray) => {
+    console.log("Returning Promise Array")
+    return Promise.all(promiseArray)
+  })
+  .then((result) => {
+    console.log(success);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+}
+
+const getSkusFour = function() {
+  const success = 'Skus Succesfully Added!';
+  axios.get('http://localhost:3000/skusFour')
+  .then((results) => {
+    console.log("Received Data")
+    return results.data;
+  })
+  .then((resultArray) => {
+    var promiseArray = []
+    for (var i = 0; i < resultArray.length; i++) {
+      promiseArray.push(db.queryAsync(
+        `INSERT INTO skus (id, skus_ref_Id, quantity, size) VALUES
+        (${Number(resultArray[i].id)}, ${Number(resultArray[i].styleId)},
+        '${resultArray[i].quantity}', '${resultArray[i].size}')`
+      ))
+    }
+    return promiseArray;
+  })
+  .then((promiseArray) => {
+    console.log("Returning Promise Array")
+    return Promise.all(promiseArray)
+  })
+  .then((result) => {
+    console.log(success);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+}
+
+const getSkusFive = function() {
+  const success = 'Skus Succesfully Added!';
+  axios.get('http://localhost:3000/skusFive')
+  .then((results) => {
+    console.log("Received Data")
+    return results.data;
+  })
+  .then((resultArray) => {
+    var promiseArray = []
+    for (var i = 0; i < resultArray.length; i++) {
+      promiseArray.push(db.queryAsync(
+        `INSERT INTO skus (id, skus_ref_Id, quantity, size) VALUES
+        (${Number(resultArray[i].id)}, ${Number(resultArray[i].styleId)},
+        '${resultArray[i].quantity}', '${resultArray[i].size}')`
+      ))
+    }
+    return promiseArray;
+  })
+  .then((promiseArray) => {
+    console.log("Returning Promise Array")
+    return Promise.all(promiseArray)
+  })
+  .then((result) => {
+    console.log(success);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+}
+
+const getSkusSix = function() {
+  const success = 'Skus Succesfully Added!';
+  axios.get('http://localhost:3000/skusSix')
+  .then((results) => {
+    console.log("Received Data")
+    return results.data;
+  })
+  .then((resultArray) => {
+    var promiseArray = []
+    for (var i = 0; i < resultArray.length; i++) {
+      promiseArray.push(db.queryAsync(
+        `INSERT INTO skus (id, skus_ref_Id, quantity, size) VALUES
+        (${Number(resultArray[i].id)}, ${Number(resultArray[i].styleId)},
+        '${resultArray[i].quantity}', '${resultArray[i].size}')`
+      ))
+    }
+    return promiseArray;
+  })
+  .then((promiseArray) => {
+    console.log("Returning Promise Array")
+    return Promise.all(promiseArray)
+  })
+  .then((result) => {
+    console.log(success);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+}
+
+const getSkusSeven = function() {
+  const success = 'Skus Succesfully Added!';
+  axios.get('http://localhost:3000/skusSeven')
+  .then((results) => {
+    console.log("Received Data")
+    return results.data;
+  })
+  .then((resultArray) => {
+    var promiseArray = []
+    for (var i = 0; i < resultArray.length; i++) {
+      promiseArray.push(db.queryAsync(
+        `INSERT INTO skus (id, skus_ref_Id, quantity, size) VALUES
+        (${Number(resultArray[i].id)}, ${Number(resultArray[i].styleId)},
+        '${resultArray[i].quantity}', '${resultArray[i].size}')`
+      ))
+    }
+    return promiseArray;
+  })
+  .then((promiseArray) => {
+    console.log("Returning Promise Array")
+    return Promise.all(promiseArray)
+  })
+  .then((result) => {
+    console.log(success);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+}
+
+const getSkusEight = function() {
+  const success = 'Skus Succesfully Added!';
+  axios.get('http://localhost:3000/skusEight')
+  .then((results) => {
+    console.log("Received Data")
+    return results.data;
+  })
+  .then((resultArray) => {
+    var promiseArray = []
+    for (var i = 0; i < resultArray.length; i++) {
+      promiseArray.push(db.queryAsync(
+        `INSERT INTO skus (id, skus_ref_Id, quantity, size) VALUES
+        (${Number(resultArray[i].id)}, ${Number(resultArray[i].styleId)},
+        '${resultArray[i].quantity}', '${resultArray[i].size}')`
+      ))
+    }
+    return promiseArray;
+  })
+  .then((promiseArray) => {
+    console.log("Returning Promise Array")
+    return Promise.all(promiseArray)
+  })
+  .then((result) => {
+    console.log(success);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
 }
 
 const getStyles = function() {
@@ -262,6 +471,13 @@ module.exports = {
   getPhotosThree: getPhotosThree,
   getPhotosFour: getPhotosFour,
   getSkus: getSkus,
+  getSkusTwo: getSkusTwo,
+  getSkusThree: getSkusThree,
+  getSkusFour: getSkusFour,
+  getSkusFive: getSkusFive,
+  getSkusSix: getSkusSix,
+  getSkusSeven: getSkusSeven,
+  getSkusEight: getSkusEight,
   getStyles: getStyles
 }
 

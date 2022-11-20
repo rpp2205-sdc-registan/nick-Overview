@@ -18,8 +18,15 @@ app.get('/', (req, res) => {
   // etl.getPhotosOne()
   // etl.getPhotosTwo()
   // etl.getPhotosThree()
-  etl.getPhotosFour()
+  // etl.getPhotosFour()
   // etl.getSkus()
+  // etl.getSkusTwo()
+  // etl.getSkusThree()
+  // etl.getSkusFour()
+  // etl.getSkusFive()
+  // etl.getSkusSix()
+  // etl.getSkusSeven()
+  etl.getSkusEight()
   res.send("In Progress...");
 })
 
@@ -63,7 +70,7 @@ app.get('/photosOne', (req, res) => {
   fs.readFile("./Data_Set/photos.csv", (err, data) => {
     parse(data, {columns: false, trim: true, quote: '' }, (err, rows) => {
       var photoResult = [];
-      for (var i = 1; i < Math.floor(rows.length/4 + 1); i++) {
+      for (var i = 1; i < Math.ceil(rows.length/4 + 1); i++) {
         var containerObj = {};
         containerObj[rows[0][0]] = rows[i][0];
         containerObj[rows[0][1]] = rows[i][1];
@@ -82,7 +89,7 @@ app.get('/photosTwo', (req, res) => {
   fs.readFile("./Data_Set/photos.csv", (err, data) => {
     parse(data, {columns: false, trim: true, quote: '' }, (err, rows) => {
       var photoResult = [];
-      for (var i = Math.ceil(rows.length/4); i < Math.floor(rows.length/2 + 1); i++) {
+      for (var i = Math.ceil(rows.length/4); i < Math.ceil(rows.length/2); i++) {
         var containerObj = {};
         containerObj[rows[0][0]] = rows[i][0];
         containerObj[rows[0][1]] = rows[i][1];
@@ -101,7 +108,7 @@ app.get('/photosThree', (req, res) => {
   fs.readFile("./Data_Set/photos.csv", (err, data) => {
     parse(data, {columns: false, trim: true, quote: '' }, (err, rows) => {
       var photoResult = [];
-      for (var i = Math.ceil(rows.length/2); i < Math.floor((rows.length/4 * 3) + 1); i++) {
+      for (var i = Math.ceil(rows.length/2); i < Math.ceil((rows.length/4 * 3)); i++) {
         var containerObj = {};
         containerObj[rows[0][0]] = rows[i][0];
         containerObj[rows[0][1]] = rows[i][1];
@@ -120,7 +127,7 @@ app.get('/photosFour', (req, res) => {
   fs.readFile("./Data_Set/photos.csv", (err, data) => {
     parse(data, {columns: false, trim: true, quote: '' }, (err, rows) => {
       var photoResult = [];
-      for (var i = Math.ceil(rows.length/4 * 3); i < Math.floor(rows.length); i++) {
+      for (var i = Math.ceil(rows.length/4 * 3); i < Math.ceil(rows.length); i++) {
         var containerObj = {};
         containerObj[rows[0][0]] = rows[i][0];
         containerObj[rows[0][1]] = rows[i][1];
@@ -139,7 +146,7 @@ app.get('/skus', (req, res) => {
   fs.readFile("./Data_Set/skus.csv", (err, data) => {
     parse(data, {columns: false, trim: true}, (err, rows) => {
       var skusResult = [];
-      for (var i = 1; i < rows.length; i++) {
+      for (var i = 1; i < Math.ceil(rows.length/8); i++) {
         var containerObj = {};
         containerObj[rows[0][0]] = rows[i][0];
         containerObj[rows[0][1]] = rows[i][1];
@@ -152,6 +159,147 @@ app.get('/skus', (req, res) => {
     })
   })
 })
+
+app.get('/skusTwo', (req, res) => {
+  console.log("Calling Data")
+  fs.readFile("./Data_Set/skus.csv", (err, data) => {
+    parse(data, {columns: false, trim: true}, (err, rows) => {
+      var skusResult = [];
+      for (var i = Math.ceil(rows.length/8); i < Math.ceil(rows.length/4); i++) {
+        var containerObj = {};
+        containerObj[rows[0][0]] = rows[i][0];
+        containerObj[rows[0][1]] = rows[i][1];
+        containerObj[rows[0][2]] = rows[i][2];
+        containerObj[rows[0][3]] = rows[i][3];
+        containerObj[rows[0][4]] = rows[i][4];
+        skusResult.push(containerObj);
+      }
+      console.log("Sending Data")
+      res.send(skusResult);
+    })
+  })
+})
+
+app.get('/skusThree', (req, res) => {
+  console.log("Calling Data")
+  fs.readFile("./Data_Set/skus.csv", (err, data) => {
+    parse(data, {columns: false, trim: true}, (err, rows) => {
+      var skusResult = [];
+      for (var i = Math.ceil(rows.length/4); i < Math.ceil(rows.length/8 * 3); i++) {
+        var containerObj = {};
+        containerObj[rows[0][0]] = rows[i][0];
+        containerObj[rows[0][1]] = rows[i][1];
+        containerObj[rows[0][2]] = rows[i][2];
+        containerObj[rows[0][3]] = rows[i][3];
+        containerObj[rows[0][4]] = rows[i][4];
+        skusResult.push(containerObj);
+      }
+      console.log("Sending Data")
+      res.send(skusResult);
+    })
+  })
+})
+
+app.get('/skusFour', (req, res) => {
+  console.log("Calling Data")
+  fs.readFile("./Data_Set/skus.csv", (err, data) => {
+    parse(data, {columns: false, trim: true}, (err, rows) => {
+      var skusResult = [];
+      for (var i = Math.ceil(rows.length/8 * 3); i < Math.ceil(rows.length/2); i++) {
+        var containerObj = {};
+        containerObj[rows[0][0]] = rows[i][0];
+        containerObj[rows[0][1]] = rows[i][1];
+        containerObj[rows[0][2]] = rows[i][2];
+        containerObj[rows[0][3]] = rows[i][3];
+        containerObj[rows[0][4]] = rows[i][4];
+        skusResult.push(containerObj);
+      }
+      console.log("Sending Data")
+      res.send(skusResult);
+    })
+  })
+})
+
+app.get('/skusFive', (req, res) => {
+  console.log("Calling Data")
+  fs.readFile("./Data_Set/skus.csv", (err, data) => {
+    parse(data, {columns: false, trim: true}, (err, rows) => {
+      var skusResult = [];
+      for (var i = Math.ceil(rows.length/2); i < Math.ceil(rows.length/8 * 5); i++) {
+        var containerObj = {};
+        containerObj[rows[0][0]] = rows[i][0];
+        containerObj[rows[0][1]] = rows[i][1];
+        containerObj[rows[0][2]] = rows[i][2];
+        containerObj[rows[0][3]] = rows[i][3];
+        containerObj[rows[0][4]] = rows[i][4];
+        skusResult.push(containerObj);
+      }
+      console.log("Sending Data")
+      res.send(skusResult);
+    })
+  })
+})
+
+app.get('/skusSix', (req, res) => {
+  console.log("Calling Data")
+  fs.readFile("./Data_Set/skus.csv", (err, data) => {
+    parse(data, {columns: false, trim: true}, (err, rows) => {
+      var skusResult = [];
+      for (var i = Math.ceil(rows.length/8 * 5); i < Math.ceil(rows.length/8 * 6); i++) {
+        var containerObj = {};
+        containerObj[rows[0][0]] = rows[i][0];
+        containerObj[rows[0][1]] = rows[i][1];
+        containerObj[rows[0][2]] = rows[i][2];
+        containerObj[rows[0][3]] = rows[i][3];
+        containerObj[rows[0][4]] = rows[i][4];
+        skusResult.push(containerObj);
+      }
+      console.log("Sending Data")
+      res.send(skusResult);
+    })
+  })
+})
+
+app.get('/skusSeven', (req, res) => {
+  console.log("Calling Data")
+  fs.readFile("./Data_Set/skus.csv", (err, data) => {
+    parse(data, {columns: false, trim: true}, (err, rows) => {
+      var skusResult = [];
+      for (var i = Math.ceil(rows.length/8 * 6); i < Math.ceil(rows.length/8 * 7); i++) {
+        var containerObj = {};
+        containerObj[rows[0][0]] = rows[i][0];
+        containerObj[rows[0][1]] = rows[i][1];
+        containerObj[rows[0][2]] = rows[i][2];
+        containerObj[rows[0][3]] = rows[i][3];
+        containerObj[rows[0][4]] = rows[i][4];
+        skusResult.push(containerObj);
+      }
+      console.log("Sending Data")
+      res.send(skusResult);
+    })
+  })
+})
+
+app.get('/skusEight', (req, res) => {
+  console.log("Calling Data")
+  fs.readFile("./Data_Set/skus.csv", (err, data) => {
+    parse(data, {columns: false, trim: true}, (err, rows) => {
+      var skusResult = [];
+      for (var i = Math.ceil(rows.length/8 * 7); i < Math.ceil(rows.length); i++) {
+        var containerObj = {};
+        containerObj[rows[0][0]] = rows[i][0];
+        containerObj[rows[0][1]] = rows[i][1];
+        containerObj[rows[0][2]] = rows[i][2];
+        containerObj[rows[0][3]] = rows[i][3];
+        containerObj[rows[0][4]] = rows[i][4];
+        skusResult.push(containerObj);
+      }
+      console.log("Sending Data")
+      res.send(skusResult);
+    })
+  })
+})
+
 
 app.get('/styles', (req, res) => {
   fs.readFile("./Data_Set/styles.csv", (err, data) => {
