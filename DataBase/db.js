@@ -17,10 +17,3 @@ db.connectAsync()
   .catch((err) => console.log(err));
 
 module.exports = db;
-
-// LOAD DATA INFILE 'Data_Set/product.csv'
-// INTO TABLE 'products'
-// FIELDS TERMINATED BY ','
-// ENCLOSED BY '"'
-// LINES TERMINATED BY '\n'
-// IGNORE 1 ROWS;

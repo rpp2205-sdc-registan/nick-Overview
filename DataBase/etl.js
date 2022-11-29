@@ -12,20 +12,22 @@ const getProducts = function() {
   const success = 'Products Succesfully Added!';
   axios.get('http://localhost:3000/products')
   .then((results) => {
+    console.log("RETURNED DATA")
     return results.data;
   })
   .then((resultArray) => {
     var promiseArray = []
     for (var i = 0; i < resultArray.length; i++) {
       promiseArray.push(db.queryAsync(
-        `INSERT INTO products (id, name, slogan, description, category) VALUES (${Number(resultArray[i].id)},
-        "${resultArray[i].name}", "${resultArray[i].slogan}", "${resultArray[i].description}",
-        "${resultArray[i].default_price}")`
+        `INSERT INTO products (id, name, slogan, description, category, default_price) VALUES (${Number(resultArray[i].id)},
+        "${resultArray[i].name}", "${resultArray[i].slogan}", "${resultArray[i].description}", "${resultArray[i].category}",
+        ${Number(resultArray[i].default_price)})`
       ))
     }
     return promiseArray;
   })
   .then((promiseArray) => {
+    console.log("STARTING PROMISES OF DATA")
     return Promise.all(promiseArray)
   })
   .then((result) => {
@@ -40,6 +42,7 @@ const getFeatures = function() {
   const success = 'Features Succesfully Added!';
   axios.get('http://localhost:3000/features')
   .then((results) => {
+    console.log("RETURNED DATA")
     return results.data;
   })
   .then((resultArray) => {
@@ -66,6 +69,7 @@ const getFeatures = function() {
     return promiseArrays;
   })
   .then((promiseArray) => {
+    console.log("STARTING PROMISES OF DATA")
     return Promise.all([Promise.all(promiseArray[0]), Promise.all(promiseArray[1])]);
   })
   .then((result) => {
