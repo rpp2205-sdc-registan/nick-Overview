@@ -4,16 +4,17 @@ const Promise = require("bluebird");
 
 
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "atelier",
+  host: 'host.docker.internal',
+  user: 'root',
+  database: 'atelier',
+  password: 'atelier',
+  port: '3307'
 });
 
 const db = Promise.promisifyAll(connection, { multiArgs: true });
 
 db.connectAsync()
-  .then(() => console.log(`Connected to MySQL as id: ${db.threadId}`))
+  .then(() => console.log("Successfully Connected to DB"))
   .catch((err) => console.log(err));
 
 module.exports = db;

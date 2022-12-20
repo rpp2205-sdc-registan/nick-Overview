@@ -10,6 +10,10 @@ const port = 3000;
 
 app.use(bodyParser.json())
 
+app.get('/test', (req, res) => {
+  res.send('This Test Worked!')
+});
+
 
 // app.get('/products/:product_id', (req, res) => {
 //   var dataPromises = [];
