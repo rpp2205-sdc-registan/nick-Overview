@@ -4,7 +4,7 @@ const Promise = require("bluebird");
 
 
 const connection = mysql.createConnection({
-  host: 'host.docker.internal',
+  host: 'host.docker.internal' || 'mysql',
   user: 'root',
   database: 'atelier',
   password: 'atelier',
