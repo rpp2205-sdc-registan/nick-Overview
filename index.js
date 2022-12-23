@@ -56,19 +56,19 @@ app.get('/test', (req, res) => {
 app.get('/products/:product_id/styles', (req, res) => {
   var dataPromises = [];
   var product_id = Number(req.params.product_id);
-  var stylesQuery = `SELECT * FROM STYLES WHERE (style_ref_Id = ${product_id})`;
+  var stylesQuery = `select * from styles where (style_ref_Id = ${product_id})`;
   var styleData = db.queryAsync(stylesQuery);
   dataPromises.push(styleData);
   Promise.all(dataPromises)
     .then((results) => {
       if (results[0][0].length <= 0) {
-        res.send('No Other Styles Found for This Item')
+        res.send('no other styles found for this item')
       } else {
         dataPromises = [];
         var styles = results[0][0]
         var ref_id = styles[0].style_ref_Id;
-        var photoQuery = `SELECT * FROM PHOTOS WHERE (photos_ref_Id = ${ref_id})`;
-        var skuQuery = `SELECT * FROM SKUS WHERE (skus_ref_Id = ${ref_id})`;
+        var photoQuery = `select * from photos where (photos_ref_Id = ${ref_id})`;
+        var skuQuery = `select * from skus where (skus_ref_Id = ${ref_id})`;
         var photoData = db.queryAsync(photoQuery)
         var skuData = db.queryAsync(skuQuery)
         dataPromises.push(photoData);
