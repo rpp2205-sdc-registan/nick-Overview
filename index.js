@@ -1,18 +1,36 @@
-const express = require('express')
-const app = express()
-const bodyParser = require('body-parser')
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
 const fs = require("fs");
 const { parse } = require("csv-parse");
 const axios = require("axios");
-const db = require('./DataBase/db.js')
+const db = require('./DataBase/db.js');
+const morgan = require('morgan');
+// const text = require('/Users/ncassano/Desktop/FEC_SDC/SDC_BackUp/nick-Overview/load.txt')
 const port = 3000;
 
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+app.use(morgan('tiny'));
 
 app.get('/test', (req, res) => {
   res.send('This Test Worked!')
 });
+
+app.get('/loaderio-7169e6fc7704cdce9712a2c0303c1f89/', (req, res) => {
+  res.send('loaderio-7169e6fc7704cdce9712a2c0303c1f89')
+})
+
+// app.get('/loaderio-7169e6fc7704cdce9712a2c0303c1f89.txt', (req, res) => {
+//   res.send('loaderio-7169e6fc7704cdce9712a2c0303c1f89')
+// })
+
+app.get("/loaderio-7169e6fc7704cdce9712a2c0303c1f89.txt", function (req,res) {
+  fs.readFile("/Users/ncassano/Desktop/FEC_SDC/SDC_BackUp/nick-Overview/load.txt", "utf8", function (err,data) {
+      res.send(data);
+  });
+});
+
 
 
 // app.get('/products/:product_id', (req, res) => {
