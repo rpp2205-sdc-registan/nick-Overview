@@ -3,3 +3,5 @@
 /.env
 
 /Data_Set/
+
+/sqlData.js

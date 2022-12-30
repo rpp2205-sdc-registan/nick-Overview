@@ -1,14 +1,15 @@
 require("dotenv").config();
 const mysql = require("mysql2");
 const Promise = require("bluebird");
+const sql = require("../sqlData.js")
 
 
 const connection = mysql.createConnection({
-  host: 'ec2-34-209-246-59.us-west-2.compute.amazonaws.com',
-  port: '3307',
-  user: 'root',
-  database: 'atelier',
-  password: 'atelier',
+  host: sql.host,
+  port: sql.port,
+  user: sql.user,
+  database: sql.database,
+  password: sql.password,
 });
 
 const db = Promise.promisifyAll(connection, { multiArgs: true });
