@@ -1,0 +1,10 @@
+version: '3.9'
+services:
+  server:
+    container_name: server_one
+    build: .
+    expose: 
+        - "4000"
+    ports:
+      - 3000:3000
+
